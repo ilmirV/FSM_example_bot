@@ -57,14 +57,14 @@ async def process_cancel_command_state(message: Message, state: FSMContext):
 
 @dp.message(Command(commands='fillform'), StateFilter(default_state))
 async def process_fillform_command(message: Message, state: FSMContext):
-    await message.answer(text='Пожалуйста, введите ваше имя')
+    await message.answer(text='Пожалуйста, введите Ваше имя')
     await state.set_state(FSMFillForm.fill_name)
 
 
 @dp.message(StateFilter(FSMFillForm.fill_name), F.text.isalpha())
 async def process_name_sent(message: Message, state: FSMContext):
     await state.update_data(name=message.text)
-    await message.answer(text='Спасибо!\n\nА теперь введите ваш возраст')
+    await message.answer(text='Спасибо!\n\nА теперь введите Ваш возраст')
     await state.set_state(FSMFillForm.fill_age)
 
 
@@ -72,8 +72,8 @@ async def process_name_sent(message: Message, state: FSMContext):
 async def warning_not_name(message: Message):
     await message.answer(
         text='То, что вы отправили не похоже на имя\n\n'
-             'Пожалуйста, введите ваше имя\n\n'
-             'Если вы хотите прервать заполнение анкеты - '
+             'Пожалуйста, введите Ваше имя\n\n'
+             'Если Вы хотите прервать заполнение анкеты - '
              'отправьте команду /cancel'
     )
 
@@ -100,7 +100,7 @@ async def process_age_sent(message: Message, state: FSMContext):
     ]
     markup = InlineKeyboardMarkup(inline_keyboard=keyboard)
     await message.answer(
-        text='Спасибо!\n\nУкажите ваш пол',
+        text='Спасибо!\n\nУкажите Ваш пол',
         reply_markup=markup
     )
     await state.set_state(FSMFillForm.fill_gender)
@@ -110,7 +110,7 @@ async def process_age_sent(message: Message, state: FSMContext):
 async def warning_not_age(message: Message):
     await message.answer(
         text='Возраст должен быть целым числом от 4 до 120\n\n'
-             'Попробуйте еще раз\n\nЕсли вы хотите прервать '
+             'Попробуйте еще раз\n\nЕсли Вы хотите прервать '
              'заполнение анкеты - отправьте команду /cancel'
     )
 
@@ -122,7 +122,7 @@ async def process_gender_press(callback: CallbackQuery, state: FSMContext):
     await callback.message.delete()
     await callback.message.answer(
         text='Спасибо! А теперь загрузите, '
-             'пожалуйста, ваше фото'
+             'пожалуйста, Ваше фото'
     )
     await state.set_state(FSMFillForm.upload_photo)
 
@@ -131,7 +131,7 @@ async def process_gender_press(callback: CallbackQuery, state: FSMContext):
 async def warning_not_gender(message: Message):
     await message.answer(
         text='Пожалуйста, пользуйтесь кнопками '
-             'при выборе пола\n\nЕсли вы хотите прервать '
+             'при выборе пола\n\nЕсли Вы хотите прервать '
              'заполнение анкеты - отправьте команду /cancel'
     )
 
@@ -163,7 +163,7 @@ async def process_photo_sent(message: Message,
     ]
     markup = InlineKeyboardMarkup(inline_keyboard=keyboard)
     await message.answer(
-        text='Спасибо!\n\nУкажите ваше образование',
+        text='Спасибо!\n\nУкажите Ваше образование',
         reply_markup=markup
     )
     await state.set_state(FSMFillForm.fill_education)
@@ -173,7 +173,7 @@ async def process_photo_sent(message: Message,
 async def warning_not_photo(message: Message):
     await message.answer(
         text='Пожалуйста, на этом шаге отправьте '
-             'ваше фото\n\nЕсли вы хотите прервать '
+             'Ваше фото\n\nЕсли вы хотите прервать '
              'заполнение анкеты - отправьте команду /cancel'
     )
 
@@ -196,7 +196,7 @@ async def process_education_press(callback: CallbackQuery, state: FSMContext):
     markup = InlineKeyboardMarkup(inline_keyboard=keyboard)
     await callback.message.edit_text(
         text='Спасибо!\n\nОстался последний шаг.\n'
-             'Хотели бы вы получать новости?',
+             'Хотели бы Вы получать новости?',
         reply_markup=markup
     )
     await state.set_state(FSMFillForm.fill_wish_news)
@@ -206,7 +206,7 @@ async def process_education_press(callback: CallbackQuery, state: FSMContext):
 async def warning_not_education(message: Message):
     await message.answer(
         text='Пожалуйста, пользуйтесь кнопками '
-             'при выборе образования\n\nЕсли вы хотите '
+             'при выборе образования\n\nЕсли Вы хотите '
              'прервать заполнение анкеты - отправьте '
              'команду /cancel'
     )
@@ -223,7 +223,7 @@ async def process_wish_news_press(callback: CallbackQuery, state: FSMContext):
              'Вы вышли из машины состояний'
     )
     await callback.message.answer(
-        text='Чтобы посмотреть данные вашей '
+        text='Чтобы посмотреть данные Вашей '
              'анкеты - отправьте команду /showdata'
     )
 
@@ -232,7 +232,7 @@ async def process_wish_news_press(callback: CallbackQuery, state: FSMContext):
 async def warning_not_wish_news(message: Message):
     await message.answer(
         text='Пожалуйста, воспользуйтесь кнопками!\n\n'
-             'Если вы хотите прервать заполнение анкеты - '
+             'Если Вы хотите прервать заполнение анкеты - '
              'отправьте команду /cancel'
     )
 
