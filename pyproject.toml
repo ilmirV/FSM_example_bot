@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "fsm-example-bot"
+version = "0.1.0"
+description = ""
+authors = ["Freddy Elisabeth <felisabe@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+environs = "^10.1.0"
+aiogram = "^3.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
